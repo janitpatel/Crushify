@@ -137,18 +137,18 @@
 		e.preventDefault();
 		uploadArea.classList.remove("dragover");
 
-		const droppedFiles = [...e.dataTransfer.files].filter((f) => f.type.startsWith("image/"));
-		files.push(...droppedFiles);
-		updateFileList();
-		showPreview();
+	const droppedFiles = [...e.dataTransfer.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf");
+	files.push(...droppedFiles);
+	updateFileList();
+	showPreview();
 	});
 
 	// ========== File Input Upload ==========
 	fileInput.addEventListener("change", (e) => {
-		const selectedFiles = [...e.target.files].filter((f) => f.type.startsWith("image/"));
-		files.push(...selectedFiles);
-		updateFileList();
-		showPreview();
+	const selectedFiles = [...e.target.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf");
+	files.push(...selectedFiles);
+	updateFileList();
+	showPreview();
 	});
 
 	// ========== Format Button Selection ==========
@@ -252,42 +252,11 @@
 		const convertedFiles = [];
 
 		try {
-			for (const file of files) {
-				const options = {
-					useWebWorker: true,
-					initialQuality: quality,
-					fileType: `image/${selectedFormat}`,
-					...(shouldResize ? { maxWidthOrHeight: Math.max(width, height) } : {}),
-				};
-
-				const compressed = await imageCompression(file, options);
-				convertedFiles.push(compressed);
-			}
-
-			for (const [i, file] of convertedFiles.entries()) {
-				const imgURL = URL.createObjectURL(file);
-				const wrapper = document.createElement("div");
-				wrapper.className = "image__card";
-
-				const img = document.createElement("img");
-				img.src = imgURL;
-
-				const fileInfo = document.createElement("p");
-				fileInfo.innerHTML = `image${i + 1}.${selectedExtension} <span class="filesize">(${formatFileSize(file.size)})</span>`;
-
-				const downloadBtn = document.createElement("a");
-				downloadBtn.href = imgURL;
-				downloadBtn.download = `image${i + 1}.${selectedExtension}`;
-				downloadBtn.innerHTML = '<i class="fi fi-rr-download"></i> Download';
-				downloadBtn.className = "download-btn";
-
-				wrapper.appendChild(img);
-				wrapper.appendChild(fileInfo);
-				wrapper.appendChild(downloadBtn);
-				preview.appendChild(wrapper);
-			}
-
-			files = convertedFiles;
+			// Use modular ImageConverter for all formats
+			const results = await window.ImageConverter.convertFiles(files, selectedExtension);
+			window.ImageConverter.renderPreviews(results, document.getElementById("preview"));
+			// Update files array to blobs for download
+			files = results.map(r => r.blob);
 			updateFileList();
 		} catch (error) {
 			alert("Error during conversion. Please try again.");

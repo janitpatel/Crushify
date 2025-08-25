@@ -27,9 +27,9 @@
 /*********************************
 /* Fonts
 /* Jost
-/*
+/* Poppins
 *********************************/
-@import url("https://fonts.googleapis.com/css2?family=Jost:ital,wght@0,100..900;1,100..900&amp;display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap");
 /**
  * For max-width media query, device width are sets as::after
  * xl = 1440
@@ -47,7 +47,7 @@
 }
 
 :root {
-  --font-default: "Jost", sans-serif;
+  --font-default: "Poppins", sans-serif;
   --color-black: #000000;
   --color-black-rgb: 0, 0, 0;
   --color-white: #ffffff;
@@ -1571,7 +1571,7 @@ figure {
 }
 .app__container .settings {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(2);
   gap: 30px;
   border: 1px solid var(--color-border);
   border-radius: 10px;

@@ -1,429 +1,388 @@
 <!DOCTYPE html>
 <html lang="en">
-	
-<!-- Mirrored from conzip-conveter.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jun 2025 05:54:15 GMT -->
-<!-- Added by HTTrack --><meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
-<head>
-		<!-- Required meta tags -->
-		<meta charset="utf-8" />
-		<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
-		<title>ConZip - Image Converter & Compress</title>
-		<meta name="description" content="ConZip - Image Converter & Compress" />
-		<link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/f-icon" />
 
-		<!-- Remix Icon -->
-		<link rel="stylesheet" href="assets/css/remixicon.css" />
-		<!-- Uicons -->
-		<link rel="stylesheet" href="assets/css/uicons-regular-rounded.css" />
-		<!-- bootstraph -->
-		<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
-		<!-- Aos Animation -->
-		<link rel="stylesheet" href="assets/css/aos.css" />
-		<!-- User's CSS Here -->
-		<link rel="stylesheet" href="assets/css/style.css" />
-	</head>
-	<body>
-		<!-- Page Loader Start -->
-		<div id="fullPageLoader" class="loader-overlay">
-			<div class="loader-content">
-				<div class="spinner"></div>
-				<p>Processing images, please wait...</p>
+<!-- Mirrored from conzip-conveter.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jun 2025 05:54:15 GMT -->
+<!-- Added by HTTrack -->
+<meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
+
+<head>
+	<!-- Required meta tags -->
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+	<title>Crushify - Image Converter & Compress</title>
+	<meta name="description" content="Crushify - Image Converter & Compress" />
+	<link rel="shortcut icon" href="assets/images/logo/favicon.svg" type="image/f-icon" />
+
+	<!-- Remix Icon -->
+	<link rel="stylesheet" href="assets/css/remixicon.css" />
+	<!-- Uicons -->
+	<link rel="stylesheet" href="assets/css/uicons-regular-rounded.css" />
+	<!-- bootstraph -->
+	<link rel="stylesheet" href="assets/css/bootstrap.min.css" />
+	<!-- Aos Animation -->
+	<link rel="stylesheet" href="assets/css/aos.css" />
+	<!-- User's CSS Here -->
+	<link rel="stylesheet" href="assets/css/style.css" />
+</head>
+
+<body>
+	<!-- Page Loader Start -->
+	<div id="fullPageLoader" class="loader-overlay">
+		<div class="loader-content">
+			<div class="spinner"></div>
+			<p>Processing images, please wait...</p>
+		</div>
+	</div>
+	<!-- Page Loader End -->
+
+	<!-- Header Start -->
+	<header class="header">
+		<!-- Nav Start -->
+		<nav class="nav p-0 m-0">
+			<div class="container">
+				<div class="header__wrapper">
+					<!-- Header Logo End -->
+					<div class="header__logo">
+						<a href='index.html'>
+							<img src="assets/images/logo/logo.svg" alt="logo" />
+						</a>
+					</div>
+					<!-- Header Logo End -->
+					<!-- Header Menu Start -->
+					<div class="header__menu">
+						<ul class="main__menu">
+							<li><a class='active' href='index.html'>Home</a></li>
+							<li><a href="#feature">Features</a></li>
+							<li><a href="#faq">FAQ</a></li>
+							<li class="header__btn d-md-none">
+								<a href="#" class="sg-btn sg-btn-dark">Try Image Compressor</a>
+							</li>
+						</ul>
+					</div>
+					<!-- Header Menu End -->
+					<!-- Header Meta Start -->
+					<div class="header__meta">
+						<div class="header__btn d-md-flex d-none">
+							<a href="#" class="sg-btn sg-btn-dark">Try Image Compressor</a>
+						</div>
+						<!-- Header Toggle Start -->
+						<div class="header__toggle">
+							<div class="toggle__bar"></div>
+						</div>
+						<!-- Hrader Toggle End -->
+					</div>
+					<!-- Header Meta End -->
+				</div>
+			</div>
+		</nav>
+		<!-- Nav End -->
+	</header>
+	<!-- Header End -->
+
+	<!-- Banner Section Start -->
+	<section class="banner__section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="banner__wrapper mb-40">
+						<div class="banner__text text-center" data-aos="fade-up" data-aos-duration="700">
+							<h1 class="title">
+								Quick & Powerful Image <br />
+								<span>Converter</span>
+							</h1>
+							<p class="desc">
+								Optimize and enhance your images instantly. Supports JPG, PNG, WEBP, JPEG, BMP, HEIC, PDF and
+								AVIF. Just drag and
+								drop to start!
+							</p>
+						</div>
+					</div>
+
+					<!-- App Start -->
+					<div class="app__container">
+						<div class="upload__area" id="uploadArea">
+							<div class="icon"><i class="fi fi-rr-cloud-upload-alt"></i></div>
+							<h4>Drag & Drop your images here or click to browse</h4>
+							<p>Supports JPG, PNG, WEBP, JPEG, BMP, HEIC, PDF and
+								AVIF</p>
+							<button type="button" class="sg-btn sg-btn-primary">Select File</button>
+<input type="file" id="fileInput" multiple accept="image/*,application/pdf" hidden />
+						</div>
+
+						<ul id="fileList" class="file__list"></ul>
+
+						<div class="settings">
+							<div>
+								<label class="info__title">Select Convertion</label>
+								<div class="formats">
+									<button data-format="png" data-extension="png" class="select__btn">
+										<i class="fi fi-rr-picture"></i>PNG
+									</button>
+									<button data-format="jpeg" data-extension="jpg" class="select__btn">
+										<i class="fi fi-rr-picture"></i>JPG
+									</button>
+									<button data-format="webp" data-extension="webp" class="select__btn">
+										<i class="fi fi-rr-picture"></i>WebP
+									</button>
+									<button data-format="jpeg" data-extension="jpeg" class="select__btn">
+										<i class="fi fi-rr-picture"></i>JPEG
+									</button>
+									<button data-format="bmp" data-extension="bmp" class="select__btn">
+										<i class="fi fi-rr-picture"></i>BMP
+									</button>
+									<button data-format="avif" data-extension="avif" class="select__btn">
+										<i class="fi fi-rr-picture"></i>AVIF
+									</button>
+								</div>
+							</div>
+
+							<div class="">
+								<div class="quality" style="display: none;">
+									<label class="info__title m-0">Quality: <span id="qualityValue">10%</span></label>
+									<input type="range" id="qualitySlider" min="10" max="100" value="10" />
+								</div>
+								<div class="resize" style="display: none;">
+									<label class="info__title" id="resizeLabel">Resize Options: <span>0px *
+											100%</span></label>
+									<div class="resize__input">
+										<div class="input-group">
+											<label for="widthInput">Width (px)</label>
+											<input type="number" class="form-control" id="widthInput" />
+										</div>
+										<div class="input-group">
+											<label for="heightInput">Height (100%)</label>
+											<input type="text" class="form-control" disabled id="heightInput"
+												value="100%" />
+										</div>
+									</div>
+								</div>
+
+								<div class="actions">
+									<button id="convertBtn" class="sg-btn sg-btn-primary">
+										<i class="fi fi-rr-convert-shapes"></i>Convert All
+									</button>
+									<button id="downloadZip" class="sg-btn sg-btn-green">
+										<i class="fi fi-rr-down-to-line"></i>Download as ZIP
+									</button>
+									<button id="clearAll" class="sg-btn sg-btn-danger">
+										<i class="fi fi-rr-delete-right"></i>Clear All
+									</button>
+								</div>
+							</div>
+						</div>
+
+						<div id="preview" class="preview__thumb"></div>
+					</div>
+					<!-- App End -->
+				</div>
 			</div>
 		</div>
-		<!-- Page Loader End -->
+	</section>
+	<!-- Banner Section End -->
 
-		<!-- Header Start -->
-		<header class="header">
-			<!-- Nav Start -->
-			<nav class="nav p-0 m-0">
-				<div class="container">
-					<div class="header__wrapper">
-						<!-- Header Logo End -->
-						<div class="header__logo">
-							<a href='index.html'>
-								<img src="assets/images/logo/logo.svg" alt="logo" />
-							</a>
+	<!-- Feature Section Start -->
+	<section class="feature__section" id="feature" >
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="section__title-wrapper text-center" data-aos="fade-up" data-aos-duration="800">
+						<div class="section__title">
+							<h4 class="subtitle">Features</h4>
+							<h2 class="title">Unlimited Free Image Compression</h2>
 						</div>
-						<!-- Header Logo End -->
-						<!-- Header Menu Start -->
-						<div class="header__menu">
-							<ul class="main__menu">
-								<li><a class='active' href='index.html'>Home</a></li>
-								<li><a href="#feature">Features</a></li>
-								<li><a href="#uses">uses</a></li>
-								<li><a href="#faq">FAQ</a></li>
-								<li class="header__btn d-md-none">
-									<a href="#" class="sg-btn sg-btn-dark">Get Started</a>
-								</li>
-							</ul>
-						</div>
-						<!-- Header Menu End -->
-						<!-- Header Meta Start -->
-						<div class="header__meta">
-							<div class="language__dropdown">
-								<a href="#" class="selected">English</a>
-								<ul class="language__list dropdown__list">
-									<li><a href="#">English</a></li>
-									<li><a href="#">Bangla</a></li>
-									<li><a href="#">Portuguese</a></li>
-									<li><a href="#">Hindi</a></li>
-								</ul>
-							</div>
-							<div class="header__btn d-md-flex d-none">
-								<a href="#" class="sg-btn sg-btn-dark">Get Started</a>
-							</div>
-							<!-- Header Toggle Start -->
-							<div class="header__toggle">
-								<div class="toggle__bar"></div>
-							</div>
-							<!-- Hrader Toggle End -->
-						</div>
-						<!-- Header Meta End -->
-					</div>
-				</div>
-			</nav>
-			<!-- Nav End -->
-		</header>
-		<!-- Header End -->
-
-		<!-- Banner Section Start -->
-		<section class="banner__section">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="banner__wrapper mb-40">
-							<div class="banner__text text-center" data-aos="fade-up" data-aos-duration="700">
-								<h1 class="title">
-									Quick & Powerful Image <br />
-									<span>Compression</span>
-								</h1>
-								<p class="desc">
-									Optimize and enhance your images instantly. Supports JPG, PNG, WEBP, JPEG, BMP, and AVIF. Just drag and
-									drop to start!
-								</p>
-							</div>
-						</div>
-
-						<!-- App Start -->
-						<div class="app__container">
-							<div class="upload__area" id="uploadArea">
-								<div class="icon"><i class="fi fi-rr-cloud-upload-alt"></i></div>
-								<h4>Drag & Drop your images here or click to browse</h4>
-								<p>Supports JPG, PNG, WEBP, JPEG, BMP, and AVIF</p>
-								<button type="button" class="sg-btn sg-btn-primary">Select File</button>
-								<input type="file" id="fileInput" multiple accept="image/*" hidden />
-							</div>
-
-							<ul id="fileList" class="file__list"></ul>
-
-							<div class="settings">
-								<div>
-									<label class="info__title">Select Convertion</label>
-									<div class="formats">
-										<button data-format="png" data-extension="png" class="select__btn">
-											<i class="fi fi-rr-picture"></i>PNG
-										</button>
-										<button data-format="jpeg" data-extension="jpg" class="select__btn">
-											<i class="fi fi-rr-picture"></i>JPG
-										</button>
-										<button data-format="webp" data-extension="webp" class="select__btn">
-											<i class="fi fi-rr-picture"></i>WebP
-										</button>
-										<button data-format="jpeg" data-extension="jpeg" class="select__btn">
-											<i class="fi fi-rr-picture"></i>JPEG
-										</button>
-										<button data-format="bmp" data-extension="bmp" class="select__btn">
-											<i class="fi fi-rr-picture"></i>BMP
-										</button>
-										<button data-format="avif" data-extension="avif" class="select__btn">
-											<i class="fi fi-rr-picture"></i>AVIF
-										</button>
-									</div>
-								</div>
-
-								<div class="">
-									<div class="quality">
-										<label class="info__title m-0">Quality: <span id="qualityValue">10%</span></label>
-										<input type="range" id="qualitySlider" min="10" max="100" value="10" />
-									</div>
-									<div class="resize">
-										<label class="info__title" id="resizeLabel">Resize Options: <span>0px * 100%</span></label>
-										<div class="resize__input">
-											<div class="input-group">
-												<label for="widthInput">Width (px)</label>
-												<input type="number" class="form-control" id="widthInput" />
-											</div>
-											<div class="input-group">
-												<label for="heightInput">Height (100%)</label>
-												<input type="text" class="form-control" disabled id="heightInput" value="100%" />
-											</div>
-										</div>
-									</div>
-
-									<div class="actions">
-										<button id="convertBtn" class="sg-btn sg-btn-primary">
-											<i class="fi fi-rr-convert-shapes"></i>Convert All
-										</button>
-										<button id="downloadZip" class="sg-btn sg-btn-green">
-											<i class="fi fi-rr-down-to-line"></i>Download as ZIP
-										</button>
-										<button id="clearAll" class="sg-btn sg-btn-danger">
-											<i class="fi fi-rr-delete-right"></i>Clear All
-										</button>
-									</div>
-								</div>
-							</div>
-
-							<div id="preview" class="preview__thumb"></div>
-						</div>
-						<!-- App End -->
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- Banner Section End -->
+			<div class="row" data-aos="fade-up" data-aos-duration="800">
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-productivity"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">Unlimited</h4>
+							<p class="desc">
+								This Image Compressor is free and provides you to use it unlimited times and compress
+								image size online.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-folder-gear"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">Fast Compression</h4>
+							<p class="desc">
+								Its powerful compression engine ensures that all selected images are compressed quickly
+								and efficiently.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-shield-check"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">Perfect Quality</h4>
+							<p class="desc">
+								We use smart compression techniques to significantly reduce image size while preserving
+								high image
+								quality.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-snap"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">Easy To Use</h4>
+							<p class="desc">
+								Simply upload your images and let our tool work its magic — even large files are
+								compressed within
+								seconds.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-free"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">It’s Free</h4>
+							<p class="desc">
+								we've compressed millions of images for free—no software installation, no registration,
+								and no
+								watermarks required.
+							</p>
+						</div>
+					</div>
+				</div>
+				<div class="col-lg-4 col-md-6 col-sm-6">
+					<div class="featureBox">
+						<div class="featureBox__icon">
+							<i class="fi fi-rr-quiz-alt"></i>
+						</div>
+						<div class="featureBox__content">
+							<h4 class="title">Add Multiple Files</h4>
+							<p class="desc">
+								With this tool, you can easily compress multiple images at once. Just upload, compress,
+								and save them
+								effortlessly.
+							</p>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+	<!-- Feature Section End -->
 
-		<!-- Feature Section Start -->
-		<section class="feature__section" id="feature">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="section__title-wrapper text-center" data-aos="fade-up" data-aos-duration="800">
+	<!-- Accordion Section Start -->
+	<section class="accordion__section" id="faq">
+		<div class="container">
+			<div class="row">
+				<div class="12">
+					<div class="custom__accordion" data-aos="fade-up" data-aos-duration="700">
+						<div class="section__title-wrapper text-center" data-aos="fade-up" data-aos-duration="700">
 							<div class="section__title">
-								<h4 class="subtitle">Features</h4>
-								<h2 class="title">Unlimited Free Image Compression</h2>
+								<h4 class="subtitle">FAQ</h4>
+								<h2 class="title">Your Questions, Answered</h2>
 							</div>
 						</div>
-					</div>
-				</div>
-				<div class="row" data-aos="fade-up" data-aos-duration="800">
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-productivity"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">Unlimited</h4>
-								<p class="desc">
-									This Image Compressor is free and provides you to use it unlimited times and compress image size online.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-folder-gear"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">Fast Compression</h4>
-								<p class="desc">
-									Its powerful compression engine ensures that all selected images are compressed quickly and efficiently.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-shield-check"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">Perfect Quality</h4>
-								<p class="desc">
-									We use smart compression techniques to significantly reduce image size while preserving high image
-									quality.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-snap"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">Easy To Use</h4>
-								<p class="desc">
-									Simply upload your images and let our tool work its magic — even large files are compressed within
-									seconds.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-free"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">It’s Free</h4>
-								<p class="desc">
-									we've compressed millions of images for free—no software installation, no registration, and no
-									watermarks required.
-								</p>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-4 col-md-6 col-sm-6">
-						<div class="featureBox">
-							<div class="featureBox__icon">
-								<i class="fi fi-rr-quiz-alt"></i>
-							</div>
-							<div class="featureBox__content">
-								<h4 class="title">Add Multiple Files</h4>
-								<p class="desc">
-									With this tool, you can easily compress multiple images at once. Just upload, compress, and save them
-									effortlessly.
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Feature Section End -->
-
-		<!-- Uses Section Start -->
-		<section class="uses__section bg-color" id="uses">
-			<div class="container">
-				<div class="row align-items-center">
-					<div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="800">
-						<div class="uses__wrapper">
-							<div class="uses__content">
-								<h2 class="title">How to compress image online?</h2>
-								<p class="desc">
-									Upload your image, choose compression settings, and download the smaller file instantly—no software
-									needed.
-								</p>
-								<ul class="list__item">
-									<li>Select image that you want to compress on the Image Compressor.</li>
-									<li>See the preview of all the selected images on the Image Compressor.</li>
-									<li>You can set image size using the slider accordingly.</li>
-									<li>Also, you can add or remove images from the list.</li>
-									<li>Finally, download compressed images from the Image Compressor.</li>
-								</ul>
-							</div>
-						</div>
-					</div>
-					<div class="col-lg-6 col-md-6" data-aos="fade-up" data-aos-duration="800">
-						<div class="uses__thumb">
-							<img src="assets/images/uses-thumb.svg" alt="thumb" />
-						</div>
-					</div>
-				</div>
-			</div>
-		</section>
-		<!-- Uses Section End -->
-
-		<!-- Accordion Section Start -->
-		<section class="accordion__section" id="faq">
-			<div class="container">
-				<div class="row">
-					<div class="12">
-						<div class="custom__accordion" data-aos="fade-up" data-aos-duration="700">
-							<div class="section__title-wrapper text-center" data-aos="fade-up" data-aos-duration="700">
-								<div class="section__title">
-									<h4 class="subtitle">FAQ</h4>
-									<h2 class="title">Your Questions, Answered</h2>
-								</div>
-							</div>
-							<div class="accordion" id="accordionExample02" data-aos="fade-up" data-aos-duration="700">
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button
-											class="accordion-button"
-											type="button"
-											data-bs-toggle="collapse"
-											data-bs-target="#faqcollapseOne"
-											aria-expanded="true"
-											aria-controls="faqcollapseOne"
-										>
-											How to compress image file size online?
-										</button>
-									</h2>
-									<div id="faqcollapseOne" class="accordion-collapse collapse show" data-bs-parent="#accordionExample02">
-										<div class="accordion-body">
-											<p class="desc">
-												You can compress the image file size in high quality through the use of an online image
-												compressor. This convenient tool allows efficient file size compression while maintaining
-												file quality.
-											</p>
-										</div>
+						<div class="accordion" id="accordionExample02" data-aos="fade-up" data-aos-duration="700">
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button" type="button" data-bs-toggle="collapse"
+										data-bs-target="#faqcollapseOne" aria-expanded="true"
+										aria-controls="faqcollapseOne">
+										How to compress image file size online?
+									</button>
+								</h2>
+								<div id="faqcollapseOne" class="accordion-collapse collapse show"
+									data-bs-parent="#accordionExample02">
+									<div class="accordion-body">
+										<p class="desc">
+											You can compress the image file size in high quality through the use of an
+											online image
+											compressor. This convenient tool allows efficient file size compression
+											while maintaining
+											file quality.
+										</p>
 									</div>
 								</div>
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button
-											class="accordion-button collapsed"
-											type="button"
-											data-bs-toggle="collapse"
-											data-bs-target="#faqcollapseTwo"
-											aria-expanded="false"
-											aria-controls="faqcollapseTwo"
-										>
-											What are the steps to compress image file size?
-										</button>
-									</h2>
-									<div id="faqcollapseTwo" class="accordion-collapse collapse" data-bs-parent="#accordionExample02">
-										<div class="accordion-body">
-											<p class="desc">
-												Select image that you want to compress on the Image Compressor.
-												<br />
-												See the preview of all the selected images on the Image Compressor.
-												<br />
-												You can set image size using the slider accordingly.
-												<br />
-												Also, you can add or remove images from the list.
-												<br />
-												Finally, download compressed images from the Image Compressor.
-											</p>
-										</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#faqcollapseTwo" aria-expanded="false"
+										aria-controls="faqcollapseTwo">
+										What are the steps to compress image file size?
+									</button>
+								</h2>
+								<div id="faqcollapseTwo" class="accordion-collapse collapse"
+									data-bs-parent="#accordionExample02">
+									<div class="accordion-body">
+										<p class="desc">
+											Select image that you want to compress on the Image Compressor.
+											<br />
+											See the preview of all the selected images on the Image Compressor.
+											<br />
+											You can set image size using the slider accordingly.
+											<br />
+											Also, you can add or remove images from the list.
+											<br />
+											Finally, download compressed images from the Image Compressor.
+										</p>
 									</div>
 								</div>
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button
-											class="accordion-button collapsed"
-											type="button"
-											data-bs-toggle="collapse"
-											data-bs-target="#faqcollapseThree"
-											aria-expanded="false"
-											aria-controls="faqcollapseThree"
-										>
-											Is it possible to compress a image without losing quality?
-										</button>
-									</h2>
-									<div id="faqcollapseThree" class="accordion-collapse collapse" data-bs-parent="#accordionExample02">
-										<div class="accordion-body">
-											<p class="desc">
-												Absolutely, you can compress image file size without losing quality using this tool.
-											</p>
-										</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#faqcollapseThree" aria-expanded="false"
+										aria-controls="faqcollapseThree">
+										Is it possible to compress a image without losing quality?
+									</button>
+								</h2>
+								<div id="faqcollapseThree" class="accordion-collapse collapse"
+									data-bs-parent="#accordionExample02">
+									<div class="accordion-body">
+										<p class="desc">
+											Absolutely, you can compress image file size without losing quality using
+											this tool.
+										</p>
 									</div>
 								</div>
-								<div class="accordion-item">
-									<h2 class="accordion-header">
-										<button
-											class="accordion-button collapsed"
-											type="button"
-											data-bs-toggle="collapse"
-											data-bs-target="#faqcollapseFour"
-											aria-expanded="false"
-											aria-controls="faqcollapseFour"
-										>
-											Can I compress any image file image from MB to KB?
-										</button>
-									</h2>
-									<div id="faqcollapseFour" class="accordion-collapse collapse" data-bs-parent="#accordionExample02">
-										<div class="accordion-body">
-											<p class="desc">
-												Certainly, it's possible to compress any image file image from MB to KB in size. This can be
-												accomplished by utilizing the slider within the tool to adjust and achieve file size for
-												your image file.
-											</p>
-										</div>
+							</div>
+							<div class="accordion-item">
+								<h2 class="accordion-header">
+									<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse"
+										data-bs-target="#faqcollapseFour" aria-expanded="false"
+										aria-controls="faqcollapseFour">
+										Can I compress any image file image from MB to KB?
+									</button>
+								</h2>
+								<div id="faqcollapseFour" class="accordion-collapse collapse"
+									data-bs-parent="#accordionExample02">
+									<div class="accordion-body">
+										<p class="desc">
+											Certainly, it's possible to compress any image file image from MB to KB in
+											size. This can be
+											accomplished by utilizing the slider within the tool to adjust and achieve
+											file size for
+											your image file.
+										</p>
 									</div>
 								</div>
 							</div>
@@ -431,58 +390,71 @@
 					</div>
 				</div>
 			</div>
-		</section>
-		<!-- Accordion Section End -->
+		</div>
+	</section>
+	<!-- Accordion Section End -->
 
-		<!-- Footer Section Start -->
-		<footer class="footer__section">
-			<div class="container">
-				<div class="row">
-					<div class="col-12">
-						<div class="footer__wrapper text-center">
-							<a class='footer__logo' href='index.html'>
-								<img src="assets/images/logo/logo-white.svg" alt="logo" />
-							</a>
-							<ul class="footer__social">
-								<li>
-									<a href="#!"><i class="ri-facebook-circle-fill"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="ri-twitter-x-line"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="ri-instagram-line"></i></a>
-								</li>
-								<li>
-									<a href="#!"><i class="ri-linkedin-fill"></i></a>
-								</li>
-							</ul>
-						</div>
-						<div class="footer__bottom text-center">
-							<p>Copyright © 2025 - All Right Reserved - ConZip</p>
-						</div>
+	<!-- Footer Section Start -->
+	<footer class="footer__section">
+		<div class="container">
+			<div class="row">
+				<div class="col-12">
+					<div class="footer__wrapper text-center">
+						<a class='footer__logo' href='index.html'>
+							<img src="assets/images/logo/logo-white.svg" alt="logo" />
+						</a>
+						<ul class="footer__social">
+							<!-- <li>
+								<a href="#!"><i class="ri-facebook-circle-fill"></i></a>
+							</li>-->
+							<li>
+								<a href="https://x.com/janitkapadiya"><i class="ri-twitter-x-line"></i></a>
+							</li>
+							<li>
+								<a href="https://instagram.com/janitkapadiya"><i class="ri-instagram-line"></i></a>
+							</li>
+							<!-- <li>
+								<a href="#!"><i class="ri-linkedin-fill"></i></a>
+							</li> -->
+						</ul>
+					</div>
+					<div class="footer__bottom text-center">
+						<p>Copyright © 2025 - All Right Reserved - Crushify</p>
 					</div>
 				</div>
 			</div>
-		</footer>
-		<!-- Footer Section End -->
+		</div>
+	</footer>
+	<!-- Footer Section End -->
 
-		<!-- JS -->
-		<script src="assets/js/jquery-3.7.1.min.js"></script>
-		<!-- bootstrap js -->
-		<script src="assets/js/bootstrap.min.js"></script>
-		<!-- aos animation -->
-		<script src="assets/js/aos.js"></script>
-		<!-- Smooth Scroll -->
-		<script src="assets/js/smooth-scroll.js"></script>
-		<!-- Image Compression -->
-		<script src="assets/js/browser-image-compression.js"></script>
-		<!--  JSZip and FileSaver for ZIP download -->
-		<script src="assets/js/jszip.min.js"></script>
-		<script src="assets/js/FileSaver.min.js"></script>
-		<!-- main js -->
-		<script src="assets/js/scripts.js"></script>
-	</body>
+	<!-- JS -->
+	<script src="assets/js/jquery-3.7.1.min.js"></script>
+	<!-- bootstrap js -->
+	<script src="assets/js/bootstrap.min.js"></script>
+	<!-- aos animation -->
+	<script src="assets/js/aos.js"></script>
+	<!-- Image Compression -->
+	<script src="assets/js/browser-image-compression.js"></script>
+	<!--  JSZip and FileSaver for ZIP download -->
+	<script src="assets/js/jszip.min.js"></script>
+	<script src="assets/js/FileSaver.min.js"></script>
+	<!-- main js -->
+	<script src="assets/js/scripts.js"></script>
+	<!-- Image Converter JS -->
+	<script src="assets/js/image-converter.js"></script>
+	<!-- heic2any JS -->
+	<script src="assets/js/heic2any.min.js"></script>
+	<!-- PDF.js for PDF rendering -->
+	<script src="assets/js/pdf.min.js"></script>
+	<!-- PDF.worker.js-->
+	<script>
+		// Set PDF.js workerSrc after loading pdf.js
+		if (window['pdfjsLib']) {
+			pdfjsLib.GlobalWorkerOptions.workerSrc = 'assets/js/pdf.worker.min.js';
+		}
+	</script>
+</body>
 
 <!-- Mirrored from conzip-conveter.netlify.app/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 27 Jun 2025 05:54:34 GMT -->
+
 </html>
