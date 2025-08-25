@@ -34,10 +34,6 @@ Convert & compress images instantly, right in your browser! No upload, no regist
 
 - Made with ❤️ by [Janit Kapadiya](https://x.com/janitkapadiya)
 
-## 📸 Screenshot
-
-![Crushify UI](assets/images/logo/logo.svg)
-
 ---
 
 Copyright © 2025 - All Rights Reserved - Crushify
