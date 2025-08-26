@@ -3,7 +3,7 @@
 
 // External libraries assumed loaded: heic2any, pdf.js, JSZip, FileSaver
 
-const SUPPORTED_INPUTS = ["jpg", "jpeg", "png", "webp", "bmp", "gif", "heic", "pdf"];
+const SUPPORTED_INPUTS = ["jpg", "jpeg", "png", "webp", "bmp", "gif", "heic", "pdf", "svg"];
 const OUTPUTS = ["jpg", "png"];
 
 // Utility: Get file extension
@@ -57,6 +57,29 @@ function imageToCanvas(file) {
   });
 }
 
+// Convert SVG file to canvas
+async function svgToCanvas(file) {
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function (e) {
+      const svgText = e.target.result;
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement('canvas');
+        canvas.width = img.width;
+        canvas.height = img.height;
+        canvas.getContext('2d').drawImage(img, 0, 0);
+        resolve(canvas);
+      };
+      img.onerror = reject;
+      // Use data URI for SVG
+      img.src = 'data:image/svg+xml;charset=utf-8,' + encodeURIComponent(svgText);
+    };
+    reader.onerror = reject;
+    reader.readAsText(file);
+  });
+}
+
 // Main conversion function
 async function convertFiles(files, outputType = "jpg") {
   const results = [];
@@ -67,6 +90,8 @@ async function convertFiles(files, outputType = "jpg") {
       canvases = [await heicToCanvas(file)];
     } else if (ext === "pdf") {
       canvases = await pdfToCanvases(file);
+    } else if (ext === "svg") {
+      canvases = [await svgToCanvas(file)];
     } else if (SUPPORTED_INPUTS.includes(ext)) {
       canvases = [await imageToCanvas(file)];
     } else {
@@ -77,7 +102,7 @@ async function convertFiles(files, outputType = "jpg") {
       const mime = outputType === "png" ? "image/png" : "image/jpeg";
       const blob = await canvasToBlob(canvas, mime, 0.92);
       results.push({
-        name: `${file.name.replace(/\.[^.]+$/, '')}${canvases.length > 1 ? `_p${i+1}` : ''}.${outputType}`,
+        name: `${file.name.replace(/\.[^.]+$/, '')}${canvases.length > 1 ? `_p${i + 1}` : ''}.${outputType}`,
         blob,
         url: URL.createObjectURL(blob),
         canvas

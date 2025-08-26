@@ -137,18 +137,18 @@
 		e.preventDefault();
 		uploadArea.classList.remove("dragover");
 
-	const droppedFiles = [...e.dataTransfer.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf");
-	files.push(...droppedFiles);
-	updateFileList();
-	showPreview();
+		const droppedFiles = [...e.dataTransfer.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf" || f.type === "image/svg+xml");
+		files.push(...droppedFiles);
+		updateFileList();
+		showPreview();
 	});
 
 	// ========== File Input Upload ==========
 	fileInput.addEventListener("change", (e) => {
-	const selectedFiles = [...e.target.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf");
-	files.push(...selectedFiles);
-	updateFileList();
-	showPreview();
+		const selectedFiles = [...e.target.files].filter((f) => f.type.startsWith("image/") || f.type === "application/pdf" || f.type === "image/svg+xml");
+		files.push(...selectedFiles);
+		updateFileList();
+		showPreview();
 	});
 
 	// ========== Format Button Selection ==========
