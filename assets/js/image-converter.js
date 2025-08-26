@@ -4,7 +4,7 @@
 // External libraries assumed loaded: heic2any, pdf.js, JSZip, FileSaver
 
 const SUPPORTED_INPUTS = ["jpg", "jpeg", "png", "webp", "bmp", "gif", "heic", "pdf", "svg"];
-const OUTPUTS = ["jpg", "png"];
+const OUTPUTS = ["jpg", "png", "pdf"];
 
 // Utility: Get file extension
 function getExtension(filename) {
@@ -83,33 +83,76 @@ async function svgToCanvas(file) {
 // Main conversion function
 async function convertFiles(files, outputType = "jpg") {
   const results = [];
-  for (const file of files) {
-    const ext = getExtension(file.name);
-    let canvases = [];
-    if (ext === "heic") {
-      canvases = [await heicToCanvas(file)];
-    } else if (ext === "pdf") {
-      canvases = await pdfToCanvases(file);
-    } else if (ext === "svg") {
-      canvases = [await svgToCanvas(file)];
-    } else if (SUPPORTED_INPUTS.includes(ext)) {
-      canvases = [await imageToCanvas(file)];
-    } else {
-      continue; // skip unsupported
+  if (outputType === "pdf") {
+    // Convert all images to canvases, then add to PDF
+    const jsPDF = window.jspdf?.jsPDF || window.jsPDF;
+    if (!jsPDF) throw new Error("jsPDF library not loaded");
+    const pdf = new jsPDF();
+    for (let idx = 0; idx < files.length; idx++) {
+      const file = files[idx];
+      const ext = getExtension(file.name);
+      let canvas;
+      if (ext === "heic") {
+        canvas = await heicToCanvas(file);
+      } else if (ext === "svg") {
+        canvas = await svgToCanvas(file);
+      } else if (SUPPORTED_INPUTS.includes(ext) && ext !== "pdf") {
+        canvas = await imageToCanvas(file);
+      } else {
+        continue;
+      }
+      const imgData = canvas.toDataURL("image/jpeg", 0.92);
+      const pageWidth = pdf.internal.pageSize.getWidth();
+      const pageHeight = pdf.internal.pageSize.getHeight();
+      const margin = 20; // px
+      let imgWidth = canvas.width;
+      let imgHeight = canvas.height;
+      // Scale image to fit page, preserving aspect ratio and margin
+      const ratio = Math.min((pageWidth - 2 * margin) / imgWidth, (pageHeight - 2 * margin) / imgHeight);
+      imgWidth *= ratio;
+      imgHeight *= ratio;
+      const x = (pageWidth - imgWidth) / 2;
+      const y = (pageHeight - imgHeight) / 2;
+      pdf.addImage(imgData, "JPEG", x, y, imgWidth, imgHeight);
+      if (idx < files.length - 1) pdf.addPage();
     }
-    for (let i = 0; i < canvases.length; i++) {
-      const canvas = canvases[i];
-      const mime = outputType === "png" ? "image/png" : "image/jpeg";
-      const blob = await canvasToBlob(canvas, mime, 0.92);
-      results.push({
-        name: `${file.name.replace(/\.[^.]+$/, '')}${canvases.length > 1 ? `_p${i + 1}` : ''}.${outputType}`,
-        blob,
-        url: URL.createObjectURL(blob),
-        canvas
-      });
+    const pdfBlob = pdf.output("blob");
+    results.push({
+      name: `converted.pdf`,
+      blob: pdfBlob,
+      url: URL.createObjectURL(pdfBlob),
+      canvas: null
+    });
+    return results;
+  } else {
+    for (const file of files) {
+      const ext = getExtension(file.name);
+      let canvases = [];
+      if (ext === "heic") {
+        canvases = [await heicToCanvas(file)];
+      } else if (ext === "pdf") {
+        canvases = await pdfToCanvases(file);
+      } else if (ext === "svg") {
+        canvases = [await svgToCanvas(file)];
+      } else if (SUPPORTED_INPUTS.includes(ext)) {
+        canvases = [await imageToCanvas(file)];
+      } else {
+        continue; // skip unsupported
+      }
+      for (let i = 0; i < canvases.length; i++) {
+        const canvas = canvases[i];
+        const mime = outputType === "png" ? "image/png" : "image/jpeg";
+        const blob = await canvasToBlob(canvas, mime, 0.92);
+        results.push({
+          name: `${file.name.replace(/\.[^.]+$/, '')}${canvases.length > 1 ? `_p${i+1}` : ''}.${outputType}`,
+          blob,
+          url: URL.createObjectURL(blob),
+          canvas
+        });
+      }
     }
+    return results;
   }
-  return results;
 }
 
 // Preview rendering
